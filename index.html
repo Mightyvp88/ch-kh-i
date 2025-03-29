@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra trạng thái</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .dead {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Bạn còn sống hay đã chết?</h1>
+        <button class="button" @click="chonConSong">Còn sống</button>
+        <button class="button dead" @mouseover="chayTungLung">Đã chết</button>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            methods: {
+                chonConSong() {
+                    alert("Chúc mừng, bạn vẫn còn sống!");
+                },
+                chayTungLung(event) {
+                    event.target.style.top = Math.random() * window.innerHeight + 'px';
+                    event.target.style.left = Math.random() * window.innerWidth + 'px';
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+</html>
