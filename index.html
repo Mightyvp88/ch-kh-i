@@ -3,45 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiểm tra trạng thái</title>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Trái tim chuyển động</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 50px;
+            overflow: hidden;
         }
-        .button {
-            padding: 10px 20px;
-            font-size: 18px;
-            margin: 10px;
-            cursor: pointer;
-        }
-        .dead {
+        .heart {
             position: absolute;
+            font-size: 50px;
+            color: red;
+            transition: transform 0.5s ease-in-out;
         }
     </style>
 </head>
 <body>
-    <div id="app">
-        <h1>Bạn còn sống hay đã chết?</h1>
-        <button class="button" @click="chonConSong">Còn sống</button>
-        <button class="button dead" @mouseover="chayTungLung">Đã chết</button>
-    </div>
+    <div class="heart" id="heart">❤️</div>
 
     <script>
-        const { createApp } = Vue;
-        createApp({
-            methods: {
-                chonConSong() {
-                    alert("Chúc mừng, bạn vẫn còn sống!");
-                },
-                chayTungLung(event) {
-                    event.target.style.top = Math.random() * window.innerHeight + 'px';
-                    event.target.style.left = Math.random() * window.innerWidth + 'px';
-                }
-            }
-        }).mount("#app");
+        function moveHeart() {
+            const heart = document.getElementById("heart");
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            heart.style.top = y + "px";
+            heart.style.left = x + "px";
+            heart.style.transform = "translate(-50%, -50%)";
+        }
+        
+        setInterval(moveHeart, 1000);
     </script>
 </body>
 </html>
